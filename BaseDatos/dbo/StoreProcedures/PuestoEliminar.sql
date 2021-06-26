@@ -1,0 +1,23 @@
+﻿CREATE PROCEDURE [dbo].[PuestoEliminar]
+	@Id_Puesto INT
+AS
+	BEGIN
+		SET NOCOUNT ON
+		BEGIN TRANSACTION TRASA
+		BEGIN TRY
+
+			DELETE FROM Puestos
+			WHERE Id_Puesto = @Id_Puesto
+			
+			COMMIT TRANSACTION
+			
+			SELECT 0 AS CodeError, '' AS msgError
+		END TRY
+		BEGIN CATCH
+			SELECT
+				ERROR_NUMBER() AS CodeError
+				, ERROR_NUMBER() AS MsgError
+			ROLLBACK TRANSACTION TRASA
+		END CATCH
+
+	END
