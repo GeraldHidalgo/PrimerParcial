@@ -5,7 +5,8 @@ AS
 	SET NOCOUNT ON
 
 	SELECT 
-	    Descripcion
+		Id_Titulo
+	    ,Descripcion
 	  , Estado
 	FROM Titulos
 	WHERE (@Id_Titulo IS NULL OR Id_Titulo = @Id_Titulo)
